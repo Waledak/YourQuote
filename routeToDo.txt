@@ -7,4 +7,3 @@ GET - Récupération d'un ensemble de données en fonction de certains filtres :
 
 PUT - Modification d'une entité
 
-PUT - Toggle du booléen
