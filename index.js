@@ -52,7 +52,7 @@ app.get('/quotes/:order', (req, res) => {
   }
 })
 
-app.delete('/quotes/:id', (req, res) => {
+app.delete('/quotes/del/:id', (req, res) => {
   const query = 'DELETE FROM Quote WHERE id = ?';
   const { id } = req.params;
   connection.query(query, [id], (err, results) => {
@@ -67,6 +67,22 @@ app.delete('/quotes/:id', (req, res) => {
     }
   })
 })
+
+app.delete('/quotes/delFalse', (req, res) => {
+  const query = 'DELETE FROM Quote WHERE isTrue = 0';
+  connection.query(query, (err, results) => {
+    if(err){
+      console.log(err)
+      res.sendStatus(500);
+    }
+    if(results.affectedRows !== 0){
+      res.status(204).json({ message : "success"})
+    }else{
+      res.status(404).json({message : 'no quote to delete'})
+    }
+  })
+})
+
 
 app.post('/addQuote', (req, res) => {
   const query = 'insert into Quote (adding_date, isTrue, quote) VALUES (?,?,?)';
