@@ -2,8 +2,6 @@ const express = require('express');
 const app = express();
 const port = 3000;
 const connection = require('./config');
-const addQuoteForm = require('./addQuoteForm')
-const card = require('./card')
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
@@ -15,9 +13,9 @@ app.get('/', (req, res, next) => {
       res.sendStatus(500);
     }
     if(results.length > 0){
-      res.status(200).send(`<h2>Quote(s)</h2>${results.map(quote => card(quote)).join("")}`)
+      res.status(200).json(results)
     }else{
-      res.status(404).send('no quote in the database')
+      res.status(404).json({message : 'no quote in the database'})
     }
   })
 })
