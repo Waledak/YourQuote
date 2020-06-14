@@ -1,0 +1,198 @@
+{
+	"info": {
+		"_postman_id": "9261dd67-3ade-4ee1-b01b-414f4826e352",
+		"name": "fil rouge",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "get all quotes",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/quotes",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"quotes"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "post quote",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "isTrue",
+							"value": "1",
+							"type": "text"
+						},
+						{
+							"key": "quote",
+							"value": "last quote posted 2",
+							"type": "text"
+						}
+					],
+					"options": {
+						"urlencoded": {}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/addQuote",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"addQuote"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get by order",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [],
+					"options": {
+						"urlencoded": {}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/quotes/desc",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"quotes",
+						"desc"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "delete by id",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/quotes/del/10",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"quotes",
+						"del",
+						"10"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "delete all false quote",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/quotes/delFalse",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"quotes",
+						"delFalse"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "toggle isTrue",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/quotes/modifBool/4",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"quotes",
+						"modifBool",
+						"4"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "update entity",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "quote",
+							"value": "change quote",
+							"type": "text"
+						},
+						{
+							"key": "isTrue",
+							"value": "1",
+							"type": "text",
+							"disabled": true
+						}
+					],
+					"options": {
+						"urlencoded": {}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/quotes/modif/4",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"quotes",
+						"modif",
+						"4"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"protocolProfileBehavior": {}
+}
