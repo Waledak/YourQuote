@@ -83,6 +83,21 @@ app.delete('/quotes/delFalse', (req, res) => {
   })
 })
 
+app.put('/quotes/modifBool/:id', (req, res) => {
+  const query = 'update Quote SET isTrue = !isTrue where id = ?';
+  const { id } = req.params;
+  connection.query(query, id, (err, results) => {
+    if(err){
+      console.log(err)
+      res.sendStatus(500);
+    }
+    if(results.affectedRows === 1){
+      res.status(200).json({ message : "success"})
+    }else{
+      res.status(404).json({message : 'no quote with this id'})
+    }
+  })
+})
 
 app.post('/addQuote', (req, res) => {
   const query = 'insert into Quote (adding_date, isTrue, quote) VALUES (?,?,?)';
