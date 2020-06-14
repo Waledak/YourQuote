@@ -52,6 +52,22 @@ app.get('/quotes/:order', (req, res) => {
   }
 })
 
+app.delete('/quotes/:id', (req, res) => {
+  const query = 'DELETE FROM Quote WHERE id = ?';
+  const { id } = req.params;
+  connection.query(query, [id], (err, results) => {
+    if(err){
+      console.log(err)
+      res.sendStatus(500);
+    }
+    if(results.affectedRows === 1){
+      res.status(204).json({ message : "success"})
+    }else{
+      res.status(404).json({message : 'no quote with this id'})
+    }
+  })
+})
+
 app.post('/addQuote', (req, res) => {
   const query = 'insert into Quote (adding_date, isTrue, quote) VALUES (?,?,?)';
   const { isTrue, quote } = req.body;
