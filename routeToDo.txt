@@ -5,5 +5,4 @@ GET - Récupération d'un ensemble de données en fonction de certains filtres :
   (ex: nom commençant par 'campus')Un filtre "supérieur à ..." (ex: date supérieure à 18/10/2010)
   Une route par type de filtre
 
-PUT - Modification d'une entité
 

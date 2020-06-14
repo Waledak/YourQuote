@@ -2,7 +2,6 @@ const express = require('express');
 const app = express();
 const port = 3000;
 const connection = require('./config');
-const { end } = require('./config');
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
@@ -97,6 +96,34 @@ app.put('/quotes/modifBool/:id', (req, res) => {
       res.status(404).json({message : 'no quote with this id'})
     }
   })
+})
+
+app.put('/quotes/modif/:id', (req, res) => {
+  const query = 'update Quote SET ? where id = ?';
+  const { id } = req.params;
+  let { body } = req;
+  let error;
+  if(body.isTrue){
+    if(body.isTrue === '0' || body.isTrue === '1'){
+      body.isTrue = Number(body.isTrue)
+    }else{
+      res.status(422).json({ message: 'wrong data type send'});
+      error = "wrong data type";
+    } 
+  }
+  if(!error){
+    connection.query(query, [body ,id], (err, results) => {
+      if(err){
+        console.log(err)
+        res.sendStatus(500);
+      }
+      if(results.affectedRows === 1){
+        res.status(200).json({ message : "success"})
+      }else{
+        res.status(404).json({message : 'no quote with this id'})
+      }
+    })
+  }
 })
 
 app.post('/addQuote', (req, res) => {
